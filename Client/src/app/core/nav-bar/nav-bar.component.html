@@ -1,0 +1,43 @@
+<header class="d-flex align-items-center justify-content-between align-items-center
+        py-3 px-4 mb-3 bg-white border-bottom fixed-top shadow-sm" style="height: 100px">
+    <img src="assets/images/logo.webp" style="width: 120px; height: 90px;">
+    <nav class="my-2 text-uppercase  fs-5">
+        <a class="p-2 text-black  text-decoration-none" routerLink="home" routerLinkActive="active">home</a>
+        <a class="p-2 text-black text-decoration-none" routerLink="shop" routerLinkActive="active">shop</a>
+        <a class="p-2 text-black text-decoration-none" routerLink="test-errors" routerLinkActive="active">Errors</a>
+    </nav>
+    <div class="d-flex align-items-center fs-5">
+        <a routerLink="basket" routerLinkActive="active" class="position-relative text-secondary   me-5">
+            <i class="fa fa-shopping-cart" style="font-size: 33px"></i>
+            <span class="cart-no badge bg-primary text-white" *ngIf="(basketService.basketProductsCountSource$ |
+                async) as basketProductsCount">{{basketProductsCount}}</span>
+        </a>
+        <ng-container *ngIf="!(accountService.currentAuth$ | async)">
+            <a routerLink="account/login" [queryParams]="{returnUrl:router.url}" class="btn btn-outline-secondary me-2"
+                [hidden]="">Login</a>
+            <a routerLink="account/register" class="btn btn-outline-secondary me-2" [hidden]="">Register</a>
+        </ng-container>
+
+        <ng-container *ngIf="(accountService.currentAuth$ | async) as authResult">
+            <div class="btn-group" dropdown>
+                <a id="button-basic" dropdownToggle class="text-decoration-none text-black dropdown-toggle"
+                    aria-controls="dropdown-basic">
+                    {{authResult.email}} <span class="caret"></span>
+                </a>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                    <li role="menuitem"><a class="dropdown-item" routerLink="basket"><i
+                                class="fa fa-shopping-cart me-2"></i>
+                            Basket</a></li>
+                    <li role="menuitem"><a class="dropdown-item" routerLink="orders"><i class="fa fa-history me-3"></i>
+                            Orders</a></li>
+                    <li class="divider dropdown-divider"></li>
+                    <li role="menuitem"><a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out me-3"></i>
+                            Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </ng-container>
+
+
+    </div>
+</header>

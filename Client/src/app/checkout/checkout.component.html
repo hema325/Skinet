@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="mt-5 row">
+        <div class="col-8">
+            <app-stepper [linearModeSelected]="true" #stepper>
+                <cdk-step [label]="'Address'">
+                    <app-checkout-address [addressForm]="orderForm.controls['addressForm']"></app-checkout-address>
+                    <div class="d-flex justify-content-between">
+                        <button routerLink="/basket" class=" btn btn btn-outline-primary"><i
+                                class="fa fa-angle-left me-1"></i>
+                            back to basket</button>
+                        <button cdkStepperNext [disabled]="orderForm.controls['addressForm'].invalid"
+                            class=" btn btn-primary">Next to delivery <i class="fa fa-angle-right ms-1"></i></button>
+                    </div>
+                </cdk-step>
+                <cdk-step [label]="'Delivery'">
+                    <app-checkout-delivery [deliveryForm]="orderForm.controls['deliveryForm']"
+                        (deliveryChanged)="updateCurrentDelivery($event)"></app-checkout-delivery>
+                    <div class="d-flex justify-content-between">
+                        <button cdkStepperPrevious class=" btn btn btn-outline-primary"><i
+                                class="fa fa-angle-left me-1"></i>
+                            back to Address</button>
+                        <button cdkStepperNext [disabled]="orderForm.controls['deliveryForm'].invalid"
+                            class=" btn btn-primary">Next to
+                            Review <i class="fa fa-angle-right ms-1"></i></button>
+                    </div>
+                </cdk-step>
+                <cdk-step [label]="'Review'">
+                    <app-checkout-review [basketDetails]="basketDetails"></app-checkout-review>
+                    <div class="d-flex justify-content-between">
+                        <button cdkStepperPrevious class=" btn btn btn-outline-primary"><i
+                                class="fa fa-angle-left me-1"></i>
+                            back to Delivery</button>
+                        <button class=" btn btn-primary" (click)="createPaymentIntent()">Next to
+                            Payment <i class="fa fa-angle-right ms-1"></i></button>
+                    </div>
+                </cdk-step>
+                <cdk-step [label]="'Payment'">
+                    <app-checkout-payment [paymentIntent]="paymentIntent" [orderForm]="orderForm"
+                        [basketDetails]="basketDetails"></app-checkout-payment>
+                </cdk-step>
+            </app-stepper>
+        </div>
+        <div class="col-4">
+            <app-order-summary [subtotal]="subtotal" [shipping]="shippingPrice"></app-order-summary>
+        </div>
+    </div>
+</div>

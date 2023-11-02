@@ -1,0 +1,58 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr class="border-bottom ">
+                <th scope="col" class="border-0" [class.bg-light]="showControls">
+                    <div class="p-2 text-uppercase">Product</div>
+                </th>
+                <th scope="col" class="border-0" [class.bg-light]="showControls">
+                    <div class="py-2 text-uppercase">Price</div>
+                </th>
+                <th scope="col" class="border-0 " [class.bg-light]="showControls">
+                    <div class="py-2 text-uppercase">Quantity</div>
+                </th>
+                <th scope="col" class="border-0" [class.bg-light]="showControls">
+                    <div class="py-2 text-uppercase">Total</div>
+                </th>
+                <th scope="col" class="border-0" [class.bg-light]="showControls" *ngIf="showControls">
+                    <div class="py-2 text-uppercase">Remove</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngIf="basketDetails && basketDetails?.basketProducts?.length">
+            <tr *ngFor="let product of basketDetails!.basketProducts">
+                <th scope="row">
+                    <div class="p-2">
+                        <img src="{{product.pictureUrl}}" alt="{{product.name}}" class="img-fluid"
+                            style="max-height: 35px">
+                        <div class="ml-3 d-inline-block align-middle ms-3">
+                            <h5 class="mb-0" style="font-size: 17px;">
+                                <a routerLink="/shop/{{product.productId}}" class="text-primary  text-decoration-none">
+                                    {{product.name}}
+                                </a>
+                            </h5>
+                            <span class="d-block text-muted  fw-medium" style="font-size: 15px;">Category:
+                                {{product.categoryName}}</span>
+                        </div>
+                    </div>
+                </th>
+                <td class="align-middle fw-medium ">{{product.price |
+                    currency}}</td>
+                <td class="align-middle">
+                    <i *ngIf="showControls" class="fa fa-minus-circle text-warning me-1 fs-6"
+                        (click)="decreaseProductCount(product)" style="cursor: pointer"></i>
+                    <span class="font-weight-bold px-2 me-1">{{product.quantity}}</span>
+                    <i *ngIf="showControls" class="fa fa-plus-circle text-warning me-3 fs-6"
+                        (click)="increaseProductCount(product)" style="cursor: pointer"></i>
+
+                </td>
+                <td class="align-middle fw-medium">{{product.price *
+                    product.quantity |
+                    currency}}</td>
+                <td *ngIf="showControls" class="align-middle"><i class="fa - fa-trash fs-5 text-danger"
+                        style="cursor: pointer" (click)="removeBasketProduct(product)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

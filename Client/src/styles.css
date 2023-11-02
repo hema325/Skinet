@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+label.xng-breadcrumb-trail,
+.text-info {
+    color: #17a2b8 !important;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+*:not(input) {
+    caret-color: transparent;
+}
+
+input {
+    caret-color: black;
+}

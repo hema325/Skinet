@@ -1,0 +1,6 @@
+.loader {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translatey(-50%);
+}

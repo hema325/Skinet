@@ -1,0 +1,41 @@
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgb(255, 255, 255, .65);
+    transition: opacity 400ms;
+}
+
+.card img {
+    transition: transform 400ms;
+}
+
+.card:hover img {
+    transform: scale(1.3) rotate(8deg);
+}
+
+.card:hover .overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card:hover .overlay .btn {
+    transform: translate(0);
+}
+
+.overlay .btn {
+    width: 90px;
+    transition: transform 400ms;
+}
+
+.overlay .btn:first-child {
+    transform: translatex(-20px);
+}
+
+.overlay .btn:last-child {
+    transform: translatex(20px);
+}

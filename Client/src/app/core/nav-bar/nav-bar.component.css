@@ -1,0 +1,17 @@
+.cart-no {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    position: absolute;
+    top: -12.5px;
+    right: -12.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.active {
+    color: #17a2b8 !important;
+}

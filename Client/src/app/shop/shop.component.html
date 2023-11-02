@@ -1,0 +1,57 @@
+<div class="container mt-5" *ngIf="brands?.length && categories?.length">
+    <div class="row">
+        <div class="col col-lg-4 col-xl-3">
+            <div class="mb-4">
+                <h5 class="text-primary mb-2">Sort</h5>
+                <select class="form-select" aria-label="Default select example" #sortInput
+                    (change)="onSortSelected(sortInput.value)">
+                    <option hidden selected>Select Sort Type</option>
+                    <option *ngFor="let option of sortOptions" [value]="option.value">{{option.name}}</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <h5 class="text-primary mb-2">Categories</h5>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let category of categories"
+                        (click)="onCategorySelected(category.id)"
+                        [class.active]="filterParams.categoryId == category.id">
+                        {{category.name}}</li>
+                </ul>
+            </div>
+            <div class="mb-4">
+                <h5 class="text-primary mb-2">Brands</h5>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let brand of brands" (click)="onBrandSelected(brand.id)"
+                        [class.active]="filterParams.brandId == brand.id">
+                        {{brand.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-4 d-flex justify-content-lg-between align-items-lg-center flex-column flex-lg-row  ">
+                <div class="d-none d-lg-block ">
+                    <app-paging-header [pageNumber]="pageNumber" [totalPages]="totalPages"
+                        *ngIf="products.length"></app-paging-header>
+                </div>
+                <div class="d-flex">
+                    <input type="text" class="form-control me-2 " name="" id="" aria-describedby="helpId" #searchInput
+                        placeholder="Search" style="max-width: 200px;width: 100%;"
+                        (keyup.enter)="onSearch(searchInput.value)">
+                    <button type="button" class="btn btn-outline-primary me-2"
+                        (click)="onSearch(searchInput.value)">Search</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="onReset()">Reset</button>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3  g-4">
+                <div class="col" *ngFor="let product of products">
+                    <app-product-item [productItem]="product"></app-product-item>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-5" *ngIf="products.length">
+                <app-pager [totalPages]="totalPages" [pageSize]="pageSize"
+                    (pageChanged)="onPageChanged($event)"></app-pager>
+            </div>
+        </div>
+
+    </div>
+</div>

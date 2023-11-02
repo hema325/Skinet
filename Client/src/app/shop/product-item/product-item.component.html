@@ -1,0 +1,16 @@
+<div class="card shadow-sm w-100 h-100 ">
+    <div class="position-relative overflow-hidden ">
+        <img class="card-img-top bg-info" [src]="productItem.pictureUrl || '/assets/images/placeholder.png'"
+            style="max-height: 200px;">
+        <div class="overlay d-flex justify-content-center  align-items-center ">
+            <a class="btn btn-primary me-2 py-2" (click)="addToBasket()"><i class="fa fa-shopping-cart"></i></a>
+            <a [routerLink]="'/shop/' + productItem.id" class="btn btn-primary py-2"><i class="fa fa-eye"></i></a>
+        </div>
+    </div>
+    <div class="card-body">
+        <a class="text-decoration-none ">
+            <h5 class="card-title mb-2" style="font-size: 1.2rem;">{{productItem.name}}</h5>
+        </a>
+        <span class="card-text d-block">{{productItem.price | currency}}</span>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<h4 class="mt-4 mb-3 ">Choose your delivery method</h4>
+
+<form [formGroup]="deliveryForm" class="row row-cols-2">
+    <div class="form-check col" *ngFor="let method of deliveryMethods">
+        <input class="form-check-input" type="radio" name="deliveryMethodId" formControlName="deliveryMethodId"
+            [value]="method.id" [id]="method.id" (change)="updateShippingPrice(method)">
+        <label class="form-check-label" [for]="method.id">
+            {{method.name}} - {{method.price | currency}}
+            <p class="text-muted">{{method.description}}</p>
+        </label>
+    </div>
+</form>

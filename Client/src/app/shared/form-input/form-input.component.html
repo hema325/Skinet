@@ -1,0 +1,21 @@
+<div class="form-floating mb-3" *ngIf="control">
+    <input [formControl]="control" [class.is-invalid]="control?.touched && control?.invalid"
+        [class.is-valid]="control?.touched && control?.valid" [type]="type" class="form-control  " name="formId1"
+        placeholder="Email">
+    <label for="formId1">{{label}}</label>
+    <div class="loader" *ngIf="control.status == 'PENDING'"><i class="fa fa-spinner fa-spin"></i></div>
+    <div class="invalid-feedback" *ngIf="control?.touched && control?.invalid">
+        <div *ngIf="control?.errors?.['required']">{{label}} is required</div>
+        <div *ngIf="control?.errors?.['email']">{{label}} is invalid</div>
+        <div *ngIf="control?.errors?.['maxlength'] as maxLength">{{label}} must have {{maxLength.requiredLength}}
+            letters at most</div>
+        <div *ngIf="control?.errors?.['minlength'] as minLength">{{label}} must have {{minLength.requiredLength}}
+            letters at least</div>
+        <div *ngIf="control?.errors?.['password']">{{label}} is weake</div>
+        <div *ngIf="control?.errors?.['compareTo'] as compareTo">Confirm password doesn't equal
+            {{compareTo.targetName}}
+        </div>
+        <div *ngIf="control?.errors?.['emailUnique'] as compareTo"> {{label}} is already taken </div>
+        <div *ngIf="control?.errors?.['numbers'] as compareTo"> {{label}} must have numbers only </div>
+    </div>
+</div>

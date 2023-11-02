@@ -1,0 +1,18 @@
+<div class="container display-flex justify-content-center  mt-3 col col-sm-5 col-mg-4">
+
+    <ul *ngFor="let error of errors" class="text-danger">
+        <li>{{error}}</li>
+    </ul>
+
+    <div class="text-center mb-3">
+        <h1>Register</h1>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <app-form-input type="text" label="Name" [control]="registerForm.controls['name']"></app-form-input>
+        <app-form-input type="text" label="Email" [control]="registerForm.controls['email']"></app-form-input>
+        <app-form-input type="password" label="Password" [control]="registerForm.controls['password']"></app-form-input>
+        <app-form-input type="password" label="Confirm Password"
+            [control]="registerForm.controls['confirmPassword']"></app-form-input>
+        <input type="submit" value="Register" class="btn btn-primary w-100 py-2" [disabled]="registerForm.invalid">
+    </form>
+</div>

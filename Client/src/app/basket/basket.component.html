@@ -1,0 +1,18 @@
+<div class="container py-5">
+    <div class="py-5" *ngIf="basketDetails?.basketProducts?.length else empty">
+        <app-basket-summary [showControls]="true" [basketDetails]="basketDetails"
+            (productCountChanged)="updateProductCount($event)"></app-basket-summary>
+        <div class="float-end mt-3 pb-3  w">
+            <app-order-summary [subtotal]="subtotal"></app-order-summary>
+            <a routerLink="/checkout" class="btn btn-outline-primary d-block  py-2 mx-3" role="button">Complete to
+                Checkout</a>
+        </div>
+    </div>
+    <ng-template #empty>
+        <div class="container ">
+            <h1 class="container text-center mt-5 text-primary ">Your basket is empty</h1>
+            <button routerLink="/shop" class="btn btn-primary  d-block m-auto mt-4 fs-5 ">Go to our
+                shop</button>
+        </div>
+    </ng-template>
+</div>
